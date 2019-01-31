@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/battlesnakeio/starter-snake-go/api"
+	"github.com/hexhacks/btlsnek/ai"
 )
 
 func Index(res http.ResponseWriter, req *http.Request) {
@@ -31,10 +32,11 @@ func Move(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		log.Printf("Bad move request: %v", err)
 	}
-	dump(decoded)
+
+	move := ai.Step(&decoded)
 
 	respond(res, api.MoveResponse{
-		Move: "down",
+		Move: move,
 	})
 }
 
