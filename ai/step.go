@@ -6,7 +6,7 @@ import (
 )
 
 func Step(req *api.SnakeRequest) string {
-	step, err := NextMove(&req.Board, &req.You)
+	step, err := NextMove(req)
 	if err != nil {
 		log.Print("Could not calculate next step:")
 		log.Print(err)
